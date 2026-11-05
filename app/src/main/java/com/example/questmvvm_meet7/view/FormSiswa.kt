@@ -26,6 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.selection.selectable
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,6 +76,26 @@ fun FormSiswa(
                 thickness = dimensionResource(R.dimen.thickness_divider),
                 color = Color.Blue
             )
+            Row {
+                pilihanJK.forEach { item ->
+                    Row(modifier = Modifier.selectable(
+                        selected = txtGender == item,
+                        onClick = {
+                            txtGender = item
+                        }
+                    ),
+                        verticalAlignment = Alignment.CenterVertically) {
+                        RadioButton(
+                            selected = txtGender == item,
+                            onClick = {
+                                txtGender = item
+                            }
+                        )
+                        Text(item)
+                    }
+                }
+            }
+
         }
     }
 }
